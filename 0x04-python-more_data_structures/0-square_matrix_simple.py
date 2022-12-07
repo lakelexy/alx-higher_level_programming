@@ -9,4 +9,4 @@ def square_matrix_simple(matrix=[]):
         new_matrix.append(new_row)
         new_row = []
 
-    return 
+     return new_matrix
