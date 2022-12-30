@@ -3,7 +3,7 @@
  divides all elements of a matrix"""
 
 
- def matrix_divided(matrix, div):
+def matrix_divided(matrix, div):
     new_matrix, new_row = [], []
     prev_len = 0
     messages = (
