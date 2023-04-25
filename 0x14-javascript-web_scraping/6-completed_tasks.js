@@ -3,18 +3,19 @@
 // a script to count items form an api call
 
 const request = require('request');
-const url = process.argv[2];
-request(url, (err, res, body) => {
-  if (err) console.error(err);
-  const tasks = JSON.parse(body);
-  const dict = {};
-  for (let i = 0; i < tasks.length; i++) {
-    if (!dict[tasks[i].userId]) {
-      dict[tasks[i].userId] = 0;
+
+request(process.argv[2], function (err, response, body) {
+  if (err == null) {
+    const resp = {};
+    const json = JSON.parse(body);
+    for (let i = 0; i < json.length; i++) {
+      if (json[i].completed === true) {
+        if (resp[json[i].userId] === undefined) {
+          resp[json[i].userId] = 0;
+        }
+        resp[json[i].userId]++;
+      }
     }
-    if (tasks[i].completed === true) {
-      dict[tasks[i].userId] += 1;
-    }
+    console.log(resp);
   }
-  console.log(dict);
 });
